@@ -179,7 +179,14 @@ ggplot(allages,
 
 ```
 
-
+```{r}
+ggplot(allages,
+       aes(x=allages$Employed,
+           y=allages$Major_category
+           , group = 1))+
+   geom_line() 
+   
+```
 
 
 
