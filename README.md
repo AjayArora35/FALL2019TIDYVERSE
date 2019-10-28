@@ -40,11 +40,11 @@ Also note that aes() function is used to specify the X and Y axes. That's becaus
     
 # Example 3:
   3. A histogram with adjustment for binning. (bin width)
-```{r}
+  ```{r}
     # A simple histogram using ggplot on Employed field
     library(ggplot2)
     ggplot(allages, aes(x = allages$Employed)) + geom_histogram(stat = "bin", binwidth=4000)
-    ```
+  ```
   Discussion:
     Discretizes all numerical data in a data frame into categorical bins of equal length or content or based on automatically determined clusters.
 
@@ -67,4 +67,102 @@ Also note that aes() function is used to specify the X and Y axes. That's becaus
 
     ```
   Discussion:
-    
+    This example creates a scatter plot using geometric points as markers on the graph.
+ 
+ # Example 5:
+  5. Linear Model with ggplots
+  ```{r}
+    #A scatter plot of college major Category and Employed
+    ggplot(allages,
+           aes(x=allages$Employed,
+               y=allages$Major_category
+               ))+
+      geom_point()+ geom_smooth(method="lm")
+
+  ```
+  Discussion:
+    This graph extends on the previous graph by creating lines between the geometric points.
+ 
+ # Example 6:
+ 6. Introducing color with ggplots
+    ```{r}
+    #A scatter plot of college major Category and Employed
+    ggplot(allages,
+           aes(x=allages$Employed,
+               y=allages$Major_category
+               ))+
+      geom_point(aes(color = allages$Major_category))
+
+    ```
+Discussion:
+ This example introduces color in the graphs.
+ 
+# Example 7:
+ 7. Color specific categories with ggplots
+  ```{r}
+  #A scatter plot of college major Category and Employed
+  ggplot(allages,
+         aes(x=allages$Employed,
+             y=allages$Major_category
+             ))+
+    geom_point(aes(color = allages$Major_category, size =  allages$Total))
+
+  ```
+Discussion:
+  This example introduces applying color per category.
+  
+# Example 8: 
+ 8. Faceting with ggplots 
+Faceting
+
+  Faceting is ggplot2 parlance for small multiples
+  The idea is to create separate graphs for subsets of data
+  ggplot2 offers two functions for creating small multiples:
+      facet_wrap(): define subsets as the levels of a single grouping variable
+      facet_grid(): define subsets as the crossing of two grouping variables
+  Facilitates comparison among plots, not just of geoms within a plot
+
+
+  ```{r}
+
+  ggplot(allages,
+         aes(x=allages$Employed,
+             y=allages$Major_category
+             , group = 1))+
+     geom_line() +
+     facet_wrap(~allages$Major_category, ncol = 16) 
+
+  ```
+Discussion:
+  The facet approach partitions a plot into a matrix of panels. Each panel shows a different subset of the data.
+  
+# Example 9:
+  Themes
+
+The ggplot2 theme system handles non-data plot elements such as
+
+    Axis labels
+    Plot background
+    Facet label backround
+    Legend appearance
+
+Built-in themes include:
+
+    theme_gray() (default)
+    theme_bw()
+    theme_classc()
+
+
+  ```{r}
+
+  ggplot(allages,
+         aes(x=allages$Employed,
+             y=allages$Major_category
+             , group = 1))+
+     geom_line() +
+     facet_wrap(~allages$Major_category, ncol = 16) +  theme_linedraw()
+
+  ```
+Discussion:
+  This example shows different aesthetic theme.
+  
