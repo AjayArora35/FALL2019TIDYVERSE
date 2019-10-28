@@ -165,4 +165,16 @@ Built-in themes include:
   ```
 Discussion:
   This example shows different aesthetic theme.
-  
+
+# Example 10:
+```{r}
+ggplot(allages,
+       aes(x=allages$Employed,
+           y=allages$Major_category
+           , group = 1))+
+   geom_line() 
+   
+```
+Discussion:
+  This example changes the output of the graph to use lines versus geometric points.
+
